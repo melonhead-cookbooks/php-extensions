@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: php-extensions
-# Recipe:: default
+# Recipe:: pear 
 #
 # Copyright (C) 2014 Salesforce Pardot
 # 
