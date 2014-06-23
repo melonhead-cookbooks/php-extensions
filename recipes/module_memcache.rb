@@ -21,8 +21,18 @@
 
 case node['platform_family']
 when 'rhel', 'fedora'
-  %w{ php-pecl-memcached }.each do |pkg|
-    package pkg do
+  case node['platform_version']
+  when 6
+    %w{ php-pecl-memcached }.each do |pkg|
+      package pkg do
+        action :install
+      end
+    end
+  when 5
+    package 'zlib-devel' do
+      action :install
+    end
+    php_pear 'memcache' do
       action :install
     end
   end
