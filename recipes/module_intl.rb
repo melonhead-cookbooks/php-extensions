@@ -21,11 +21,14 @@
 
 case node['platform_family']
 when 'rhel', 'fedora'
+  package 'libicu-devel' do
+    action :install
+  end
   php_pear 'intl' do
     action :install
   end
 when 'debian'
-  package 'php5-memcache' do
+  package 'php5-intl' do
     action :install
   end
 end
