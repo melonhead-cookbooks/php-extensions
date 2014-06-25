@@ -14,6 +14,15 @@ when 'rhel', 'fedora'
   php_pear 'intl' do
     action :install
   end
+
+  file '/etc/php.d/intl.ini' do
+    action :create
+    content "extension=intl.so\n"
+    owner 'root'
+    group 'root'
+    mode 0644
+    notifies :restart, resources(service: 'apache2')
+  end
 when 'debian'
   package 'php5-intl' do
     action :install

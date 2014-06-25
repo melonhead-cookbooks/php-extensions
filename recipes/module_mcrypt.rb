@@ -17,3 +17,7 @@ pkg = value_for_platform(
 package pkg do
   action :install
 end
+
+php_pear 'Crypt_HMAC' do
+  action :upgrade
+end

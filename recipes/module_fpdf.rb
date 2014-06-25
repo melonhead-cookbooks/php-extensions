@@ -15,6 +15,14 @@ when 'rhel', 'fedora'
     channel pearhub_chan.channel_name
     action :install
   end
+  file '/etc/php.d/fpdf.ini' do
+    action :create
+    content "extension=fpdf.so\n"
+    owner 'root'
+    group 'root'
+    mode 0644
+    notifies :restart, resources(service: 'apache2')
+  end
 when 'debian'
   package 'php-fpdf' do
     action :install
