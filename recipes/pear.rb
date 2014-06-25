@@ -1,15 +1,14 @@
 #
+# Author::  Danny Knapp (<dknapp@salesforce.com>)
 # Cookbook Name:: php-extensions
-# Recipe:: pear 
+# Recipe:: pear
 #
-# Copyright (C) 2014 Salesforce Pardot
-# 
-# All rights reserved - Do Not Redistribute
+# Copyright 2014, Salesforce
 #
 
 execute "download latest pear" do
   command "wget http://pear.php.net/install-pear-nozlib.phar"
-  action :run 
+  action :run
 end
 
 execute "install latest pear" do
