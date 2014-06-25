@@ -2,7 +2,7 @@
 # Author::  Joshua Timberman (<joshua@opscode.com>)
 # Author::  Seth Chisamore (<schisamo@opscode.com>)
 # Cookbook Name:: php
-# Recipe:: module_memcache
+# Recipe:: module_intl
 #
 # Copyright 2009-2011, Opscode, Inc.
 #
@@ -21,20 +21,8 @@
 
 case node['platform_family']
 when 'rhel', 'fedora'
-  case node['platform_version']
-  when 6
-    %w{ php-pecl-memcached }.each do |pkg|
-      package pkg do
-        action :install
-      end
-    end
-  when 5
-    package 'zlib-devel' do
-      action :install
-    end
-    php_pear 'memcache' do
-      action :install
-    end
+  php_pear 'intl' do
+    action :install
   end
 when 'debian'
   package 'php5-memcache' do
