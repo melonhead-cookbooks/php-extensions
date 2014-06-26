@@ -10,6 +10,7 @@ case node['platform_family']
 when 'rhel', 'fedora'
   php_pear 'xhprof' do
     action :install
+    preferred_state "beta"
   end
 
   file '/etc/php.d/xhprof.ini' do
