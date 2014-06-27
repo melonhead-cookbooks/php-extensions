@@ -8,14 +8,7 @@
 
 case node['platform_family']
 when 'rhel', 'fedora'
-  case node['platform_version']
-  when 6
-    %w{ php-pecl-memcached }.each do |pkg|
-      package pkg do
-        action :install
-      end
-    end
-  when 5
+  if node['platform_version'].to_i < 6
     package 'zlib-devel' do
       action :install
     end
@@ -29,6 +22,12 @@ when 'rhel', 'fedora'
       group 'root'
       mode 0644
       notifies :restart, resources(service: 'apache2')
+    end
+  else
+    %w{ php-pecl-memcached }.each do |pkg|
+      package pkg do
+        action :install
+      end
     end
   end
 when 'debian'
