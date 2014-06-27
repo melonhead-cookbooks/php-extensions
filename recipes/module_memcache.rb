@@ -15,14 +15,6 @@ when 'rhel', 'fedora'
         action :install
       end
     end
-    file '/etc/php.d/memcached.ini' do
-      action :create
-      content "extension=memcached.so\n"
-      owner 'root'
-      group 'root'
-      mode 0644
-      notifies :restart, resources(service: 'apache2')
-  end
   when 5
     package 'zlib-devel' do
       action :install
@@ -32,12 +24,12 @@ when 'rhel', 'fedora'
     end
     file '/etc/php.d/memcached.ini' do
       action :create
-      content "extension=xhprof.so\n"
+      content "extension=memcached.so\n"
       owner 'root'
       group 'root'
       mode 0644
       notifies :restart, resources(service: 'apache2')
-  end
+    end
   end
 when 'debian'
   package 'php5-memcache' do
